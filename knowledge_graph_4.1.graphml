@@ -1,0 +1,492 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d1" for="edge" attr.name="label" attr.type="string"/>
+<key id="d0" for="node" attr.name="type" attr.type="string"/>
+<graph edgedefault="directed"><node id="Madam Speaker">
+  <data key="d0">Person</data>
+</node>
+<node id="Madam Vice President">
+  <data key="d0">Person</data>
+</node>
+<node id="First Lady">
+  <data key="d0">Person</data>
+</node>
+<node id="Second Gentleman">
+  <data key="d0">Person</data>
+</node>
+<node id="Members Of Congress">
+  <data key="d0">Organizationrole</data>
+</node>
+<node id="Cabinet">
+  <data key="d0">Organizationrole</data>
+</node>
+<node id="Justices Of The Supreme Court">
+  <data key="d0">Organizationrole</data>
+</node>
+<node id="American People">
+  <data key="d0">Person</data>
+</node>
+<node id="Constitution">
+  <data key="d0">Issue</data>
+</node>
+<node id="Vladimir Putin">
+  <data key="d0">Person</data>
+</node>
+<node id="Russia">
+  <data key="d0">Country</data>
+</node>
+<node id="Ukraine">
+  <data key="d0">Country</data>
+</node>
+<node id="President Zelenskyy">
+  <data key="d0">Person</data>
+</node>
+<node id="Ukrainian People">
+  <data key="d0">Person</data>
+</node>
+<node id="European Parliament">
+  <data key="d0">Organization</data>
+</node>
+<node id="Ukrainian Ambassador To The United States">
+  <data key="d0">Person</data>
+</node>
+<node id="United States Of America">
+  <data key="d0">Country</data>
+</node>
+<node id="Nato Alliance">
+  <data key="d0">Organization</data>
+</node>
+<node id="European Union">
+  <data key="d0">Organization</data>
+</node>
+<node id="France">
+  <data key="d0">Country</data>
+</node>
+<node id="Germany">
+  <data key="d0">Country</data>
+</node>
+<node id="Italy">
+  <data key="d0">Country</data>
+</node>
+<node id="United Kingdom">
+  <data key="d0">Country</data>
+</node>
+<node id="Canada">
+  <data key="d0">Country</data>
+</node>
+<node id="Japan">
+  <data key="d0">Country</data>
+</node>
+<node id="Korea">
+  <data key="d0">Country</data>
+</node>
+<node id="Australia">
+  <data key="d0">Country</data>
+</node>
+<node id="New Zealand">
+  <data key="d0">Country</data>
+</node>
+<node id="Switzerland">
+  <data key="d0">Country</data>
+</node>
+<node id="U.S. Department Of Justice">
+  <data key="d0">Organization</data>
+</node>
+<node id="Russian Oligarchs">
+  <data key="d0">Person</data>
+</node>
+<node id="American Air Space">
+  <data key="d0">Location</data>
+</node>
+<node id="Ruble">
+  <data key="d0">Issue</data>
+</node>
+<node id="Russian Stock Market">
+  <data key="d0">Issue</data>
+</node>
+<node id="Ukrainians">
+  <data key="d0">Person</data>
+</node>
+<node id="Nato Allies">
+  <data key="d0">Organizationrole</data>
+</node>
+<node id="Poland">
+  <data key="d0">Country</data>
+</node>
+<node id="Romania">
+  <data key="d0">Country</data>
+</node>
+<node id="Latvia">
+  <data key="d0">Country</data>
+</node>
+<node id="Lithuania">
+  <data key="d0">Country</data>
+</node>
+<node id="Estonia">
+  <data key="d0">Country</data>
+</node>
+<node id="American Ground Forces">
+  <data key="d0">Organizationrole</data>
+</node>
+<node id="American Air Squadrons">
+  <data key="d0">Organizationrole</data>
+</node>
+<node id="Ship Deployments">
+  <data key="d0">Organizationrole</data>
+</node>
+<node id="Xi Jinping">
+  <data key="d0">Person</data>
+</node>
+<node id="Intel">
+  <data key="d0">Organization</data>
+</node>
+<node id="Pat Gelsinger">
+  <data key="d0">Person</data>
+</node>
+<node id="Ford">
+  <data key="d0">Organization</data>
+</node>
+<node id="Gm">
+  <data key="d0">Organization</data>
+</node>
+<node id="Jojo Burgess">
+  <data key="d0">Person</data>
+</node>
+<node id="Sherrod Brown">
+  <data key="d0">Person</data>
+</node>
+<node id="Joshua Davis">
+  <data key="d0">Person</data>
+</node>
+<node id="American Rescue Plan">
+  <data key="d0">Legislation</data>
+</node>
+<node id="Medicare">
+  <data key="d0">Organization</data>
+</node>
+<node id="Va">
+  <data key="d0">Organization</data>
+</node>
+<node id="Centers For Disease Control And Prevention">
+  <data key="d0">Organization</data>
+</node>
+<node id="Pfizer">
+  <data key="d0">Organization</data>
+</node>
+<node id="Test To Treat Initiative">
+  <data key="d0">Initiative</data>
+</node>
+<node id="Justice Stephen Breyer">
+  <data key="d0">Person</data>
+</node>
+<node id="United States Supreme Court">
+  <data key="d0">Organization</data>
+</node>
+<node id="Circuit Court Of Appeals Judge Ketanji Brown Jackson">
+  <data key="d0">Person</data>
+</node>
+<node id="Mexico">
+  <data key="d0">Country</data>
+</node>
+<node id="Guatemala">
+  <data key="d0">Country</data>
+</node>
+<node id="Dreamers">
+  <data key="d0">Person</data>
+</node>
+<node id="U.S. Chamber Of Commerce">
+  <data key="d0">Organization</data>
+</node>
+<node id="Roe V. Wade">
+  <data key="d0">Legislation</data>
+</node>
+<node id="Equality Act">
+  <data key="d0">Legislation</data>
+</node>
+<node id="Frances Haugen">
+  <data key="d0">Person</data>
+</node>
+<node id="Violence Against Women Act">
+  <data key="d0">Legislation</data>
+</node>
+<node id="Opioid Epidemic">
+  <data key="d0">Issue</data>
+</node>
+<node id="American Rescue Plan Funding">
+  <data key="d0">Legislation</data>
+</node>
+<node id="Paycheck Fairness Act">
+  <data key="d0">Legislation</data>
+</node>
+<node id="Child Tax Credit">
+  <data key="d0">Legislation</data>
+</node>
+<node id="Pell Grants">
+  <data key="d0">Legislation</data>
+</node>
+<node id="Hbcus">
+  <data key="d0">Organization</data>
+</node>
+<node id="Pro Act">
+  <data key="d0">Legislation</data>
+</node>
+<node id="Covid-19">
+  <data key="d0">Issue</data>
+</node>
+<node id="New York City Police Department">
+  <data key="d0">Organization</data>
+</node>
+<node id="Officer Wilbert Mora">
+  <data key="d0">Person</data>
+</node>
+<node id="Officer Jason Rivera">
+  <data key="d0">Person</data>
+</node>
+<node id="Justice Department">
+  <data key="d0">Organization</data>
+</node>
+<node id="American Rescue Plan Funding For Police">
+  <data key="d0">Legislation</data>
+</node>
+<node id="Gun Trafficking">
+  <data key="d0">Issue</data>
+</node>
+<node id="Freedom To Vote Act">
+  <data key="d0">Legislation</data>
+</node>
+<node id="John Lewis Voting Rights Act">
+  <data key="d0">Legislation</data>
+</node>
+<node id="Disclose Act">
+  <data key="d0">Legislation</data>
+</node>
+<node id="Army">
+  <data key="d0">Organization</data>
+</node>
+<node id="Danielle Robinson">
+  <data key="d0">Person</data>
+</node>
+<node id="Sergeant First Class Heath Robinson">
+  <data key="d0">Person</data>
+</node>
+<node id="Cancer Moonshot">
+  <data key="d0">Initiative</data>
+</node>
+<node id="President Obama">
+  <data key="d0">Person</data>
+</node>
+<node id="Arpa-H">
+  <data key="d0">Initiative</data>
+</node>
+<node id="Darpa">
+  <data key="d0">Organization</data>
+</node>
+<node id="Jill Biden">
+  <data key="d0">Person</data>
+</node>
+<node id="Kamala Harris">
+  <data key="d0">Person</data>
+</node>
+<node id="Ohio"/>
+<node id="Virginia"/>
+<edge source="Vladimir Putin" target="Russia">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Vladimir Putin" target="Ukraine">
+  <data key="d1">OPPOSES</data>
+</edge>
+<edge source="President Zelenskyy" target="Ukraine">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Ukrainian Ambassador To The United States" target="United States Of America">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="United States Of America" target="Nato Alliance">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="United States Of America" target="American Air Space">
+  <data key="d1">IMPOSES_SANCTIONS_ON</data>
+</edge>
+<edge source="United States Of America" target="Ruble">
+  <data key="d1">IMPOSES_SANCTIONS_ON</data>
+</edge>
+<edge source="United States Of America" target="Russian Stock Market">
+  <data key="d1">IMPOSES_SANCTIONS_ON</data>
+</edge>
+<edge source="United States Of America" target="Ukrainians">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="United States Of America" target="Nato Allies">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="United States Of America" target="Poland">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="United States Of America" target="Romania">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="United States Of America" target="Latvia">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="United States Of America" target="Lithuania">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="United States Of America" target="Estonia">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="United States Of America" target="American Ground Forces">
+  <data key="d1">HAS_ROLE</data>
+</edge>
+<edge source="United States Of America" target="American Air Squadrons">
+  <data key="d1">HAS_ROLE</data>
+</edge>
+<edge source="United States Of America" target="Ship Deployments">
+  <data key="d1">HAS_ROLE</data>
+</edge>
+<edge source="France" target="European Union">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Germany" target="European Union">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Italy" target="European Union">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="United Kingdom" target="European Union">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Canada" target="European Union">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Japan" target="European Union">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Korea" target="European Union">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Australia" target="European Union">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="New Zealand" target="European Union">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Switzerland" target="European Union">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="U.S. Department Of Justice" target="Russian Oligarchs">
+  <data key="d1">OPPOSES</data>
+</edge>
+<edge source="Intel" target="Pat Gelsinger">
+  <data key="d1">HAS_ROLE</data>
+</edge>
+<edge source="Ford" target="United States Of America">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Gm" target="United States Of America">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Jojo Burgess" target="United States Of America">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Sherrod Brown" target="Ohio">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Joshua Davis" target="Virginia">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="American Rescue Plan" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Medicare" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Va" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Centers For Disease Control And Prevention" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Pfizer" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Test To Treat Initiative" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Justice Stephen Breyer" target="United States Supreme Court">
+  <data key="d1">HAS_ROLE</data>
+</edge>
+<edge source="Circuit Court Of Appeals Judge Ketanji Brown Jackson" target="United States Supreme Court">
+  <data key="d1">HAS_ROLE</data>
+</edge>
+<edge source="Mexico" target="United States Of America">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Guatemala" target="United States Of America">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Dreamers" target="United States Of America">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="U.S. Chamber Of Commerce" target="United States Of America">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Frances Haugen" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="American Rescue Plan Funding" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Paycheck Fairness Act" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Child Tax Credit" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Pell Grants" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Hbcus" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Pro Act" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="New York City Police Department" target="Officer Wilbert Mora">
+  <data key="d1">HAS_ROLE</data>
+</edge>
+<edge source="New York City Police Department" target="Officer Jason Rivera">
+  <data key="d1">HAS_ROLE</data>
+</edge>
+<edge source="Justice Department" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="American Rescue Plan Funding For Police" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Freedom To Vote Act" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="John Lewis Voting Rights Act" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Disclose Act" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Army" target="Justice Stephen Breyer">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Danielle Robinson" target="Sergeant First Class Heath Robinson">
+  <data key="d1">MEMBER_OF</data>
+</edge>
+<edge source="Cancer Moonshot" target="President Obama">
+  <data key="d1">RELATED_TO</data>
+</edge>
+<edge source="Arpa-H" target="Darpa">
+  <data key="d1">RELATED_TO</data>
+</edge>
+<edge source="Jill Biden" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+<edge source="Kamala Harris" target="American People">
+  <data key="d1">SUPPORTS</data>
+</edge>
+</graph></graphml>
