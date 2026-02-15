@@ -1,0 +1,397 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+                <link href="lib/tom-select/tom-select.css" rel="stylesheet">
+                <script src="lib/tom-select/tom-select.complete.min.js"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+                <div id="select-menu" class="card-header">
+                    <div class="row no-gutters">
+                        <div class="col-10 pb-2">
+                            <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="selectNode([value]);"
+                            id="select-node"
+                            placeholder="Select node..."
+                            >
+                                <option selected>Select a Node by ID</option>
+                                
+                                    <option value="Vladimir Putin">Vladimir Putin</option>
+                                
+                                    <option value="Russia">Russia</option>
+                                
+                                    <option value="Ukraine">Ukraine</option>
+                                
+                                    <option value="President Zelenskyy">President Zelenskyy</option>
+                                
+                                    <option value="Ukrainian Ambassador To The United States">Ukrainian Ambassador To The United States</option>
+                                
+                                    <option value="United States Of America">United States Of America</option>
+                                
+                                    <option value="Nato Alliance">Nato Alliance</option>
+                                
+                                    <option value="American Air Space">American Air Space</option>
+                                
+                                    <option value="Ruble">Ruble</option>
+                                
+                                    <option value="Russian Stock Market">Russian Stock Market</option>
+                                
+                                    <option value="Ukrainians">Ukrainians</option>
+                                
+                                    <option value="Nato Allies">Nato Allies</option>
+                                
+                                    <option value="Poland">Poland</option>
+                                
+                                    <option value="Romania">Romania</option>
+                                
+                                    <option value="Latvia">Latvia</option>
+                                
+                                    <option value="Lithuania">Lithuania</option>
+                                
+                                    <option value="Estonia">Estonia</option>
+                                
+                                    <option value="American Ground Forces">American Ground Forces</option>
+                                
+                                    <option value="American Air Squadrons">American Air Squadrons</option>
+                                
+                                    <option value="Ship Deployments">Ship Deployments</option>
+                                
+                                    <option value="France">France</option>
+                                
+                                    <option value="European Union">European Union</option>
+                                
+                                    <option value="Germany">Germany</option>
+                                
+                                    <option value="Italy">Italy</option>
+                                
+                                    <option value="United Kingdom">United Kingdom</option>
+                                
+                                    <option value="Canada">Canada</option>
+                                
+                                    <option value="Japan">Japan</option>
+                                
+                                    <option value="Korea">Korea</option>
+                                
+                                    <option value="Australia">Australia</option>
+                                
+                                    <option value="New Zealand">New Zealand</option>
+                                
+                                    <option value="Switzerland">Switzerland</option>
+                                
+                                    <option value="U.S. Department Of Justice">U.S. Department Of Justice</option>
+                                
+                                    <option value="Russian Oligarchs">Russian Oligarchs</option>
+                                
+                                    <option value="Intel">Intel</option>
+                                
+                                    <option value="Pat Gelsinger">Pat Gelsinger</option>
+                                
+                                    <option value="Ford">Ford</option>
+                                
+                                    <option value="Gm">Gm</option>
+                                
+                                    <option value="Jojo Burgess">Jojo Burgess</option>
+                                
+                                    <option value="Sherrod Brown">Sherrod Brown</option>
+                                
+                                    <option value="Ohio">Ohio</option>
+                                
+                                    <option value="Joshua Davis">Joshua Davis</option>
+                                
+                                    <option value="Virginia">Virginia</option>
+                                
+                                    <option value="American Rescue Plan">American Rescue Plan</option>
+                                
+                                    <option value="American People">American People</option>
+                                
+                                    <option value="Medicare">Medicare</option>
+                                
+                                    <option value="Va">Va</option>
+                                
+                                    <option value="Centers For Disease Control And Prevention">Centers For Disease Control And Prevention</option>
+                                
+                                    <option value="Pfizer">Pfizer</option>
+                                
+                                    <option value="Test To Treat Initiative">Test To Treat Initiative</option>
+                                
+                                    <option value="Justice Stephen Breyer">Justice Stephen Breyer</option>
+                                
+                                    <option value="United States Supreme Court">United States Supreme Court</option>
+                                
+                                    <option value="Circuit Court Of Appeals Judge Ketanji Brown Jackson">Circuit Court Of Appeals Judge Ketanji Brown Jackson</option>
+                                
+                                    <option value="Mexico">Mexico</option>
+                                
+                                    <option value="Guatemala">Guatemala</option>
+                                
+                                    <option value="Dreamers">Dreamers</option>
+                                
+                                    <option value="U.S. Chamber Of Commerce">U.S. Chamber Of Commerce</option>
+                                
+                                    <option value="Frances Haugen">Frances Haugen</option>
+                                
+                                    <option value="American Rescue Plan Funding">American Rescue Plan Funding</option>
+                                
+                                    <option value="Paycheck Fairness Act">Paycheck Fairness Act</option>
+                                
+                                    <option value="Child Tax Credit">Child Tax Credit</option>
+                                
+                                    <option value="Pell Grants">Pell Grants</option>
+                                
+                                    <option value="Hbcus">Hbcus</option>
+                                
+                                    <option value="Pro Act">Pro Act</option>
+                                
+                                    <option value="New York City Police Department">New York City Police Department</option>
+                                
+                                    <option value="Officer Wilbert Mora">Officer Wilbert Mora</option>
+                                
+                                    <option value="Officer Jason Rivera">Officer Jason Rivera</option>
+                                
+                                    <option value="Justice Department">Justice Department</option>
+                                
+                                    <option value="American Rescue Plan Funding For Police">American Rescue Plan Funding For Police</option>
+                                
+                                    <option value="Freedom To Vote Act">Freedom To Vote Act</option>
+                                
+                                    <option value="John Lewis Voting Rights Act">John Lewis Voting Rights Act</option>
+                                
+                                    <option value="Disclose Act">Disclose Act</option>
+                                
+                                    <option value="Army">Army</option>
+                                
+                                    <option value="Danielle Robinson">Danielle Robinson</option>
+                                
+                                    <option value="Sergeant First Class Heath Robinson">Sergeant First Class Heath Robinson</option>
+                                
+                                    <option value="Cancer Moonshot">Cancer Moonshot</option>
+                                
+                                    <option value="President Obama">President Obama</option>
+                                
+                                    <option value="Arpa-H">Arpa-H</option>
+                                
+                                    <option value="Darpa">Darpa</option>
+                                
+                                    <option value="Jill Biden">Jill Biden</option>
+                                
+                                    <option value="Kamala Harris">Kamala Harris</option>
+                                
+                                    <option value="Madam Speaker">Madam Speaker</option>
+                                
+                                    <option value="Madam Vice President">Madam Vice President</option>
+                                
+                                    <option value="First Lady">First Lady</option>
+                                
+                                    <option value="Second Gentleman">Second Gentleman</option>
+                                
+                                    <option value="Members Of Congress">Members Of Congress</option>
+                                
+                                    <option value="Cabinet">Cabinet</option>
+                                
+                                    <option value="Justices Of The Supreme Court">Justices Of The Supreme Court</option>
+                                
+                                    <option value="Constitution">Constitution</option>
+                                
+                                    <option value="Ukrainian People">Ukrainian People</option>
+                                
+                                    <option value="European Parliament">European Parliament</option>
+                                
+                                    <option value="Xi Jinping">Xi Jinping</option>
+                                
+                                    <option value="Roe V. Wade">Roe V. Wade</option>
+                                
+                                    <option value="Equality Act">Equality Act</option>
+                                
+                                    <option value="Violence Against Women Act">Violence Against Women Act</option>
+                                
+                                    <option value="Opioid Epidemic">Opioid Epidemic</option>
+                                
+                                    <option value="Covid-19">Covid-19</option>
+                                
+                                    <option value="Gun Trafficking">Gun Trafficking</option>
+                                
+                            </select>
+                        </div>
+                        <div class="col-2 pb-2">
+                            <button type="button" class="btn btn-primary btn-block" onclick="neighbourhoodHighlight({nodes: []});">Reset Selection</button>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+                  new TomSelect("#select-node",{
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      }
+                  });
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "font": {"color": "white"}, "id": "Vladimir Putin", "label": "Vladimir Putin", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Russia", "label": "Russia", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Ukraine", "label": "Ukraine", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "President Zelenskyy", "label": "President Zelenskyy", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Ukrainian Ambassador To The United States", "label": "Ukrainian Ambassador To The United States", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "United States Of America", "label": "United States Of America", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Nato Alliance", "label": "Nato Alliance", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "American Air Space", "label": "American Air Space", "shape": "dot", "size": 10, "type": "Location"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Ruble", "label": "Ruble", "shape": "dot", "size": 10, "type": "Issue"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Russian Stock Market", "label": "Russian Stock Market", "shape": "dot", "size": 10, "type": "Issue"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Ukrainians", "label": "Ukrainians", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Nato Allies", "label": "Nato Allies", "shape": "dot", "size": 10, "type": "Organizationrole"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Poland", "label": "Poland", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Romania", "label": "Romania", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Latvia", "label": "Latvia", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Lithuania", "label": "Lithuania", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Estonia", "label": "Estonia", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "American Ground Forces", "label": "American Ground Forces", "shape": "dot", "size": 10, "type": "Organizationrole"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "American Air Squadrons", "label": "American Air Squadrons", "shape": "dot", "size": 10, "type": "Organizationrole"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Ship Deployments", "label": "Ship Deployments", "shape": "dot", "size": 10, "type": "Organizationrole"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "France", "label": "France", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "European Union", "label": "European Union", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Germany", "label": "Germany", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Italy", "label": "Italy", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "United Kingdom", "label": "United Kingdom", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Canada", "label": "Canada", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Japan", "label": "Japan", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Korea", "label": "Korea", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Australia", "label": "Australia", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "New Zealand", "label": "New Zealand", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Switzerland", "label": "Switzerland", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "U.S. Department Of Justice", "label": "U.S. Department Of Justice", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Russian Oligarchs", "label": "Russian Oligarchs", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Intel", "label": "Intel", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Pat Gelsinger", "label": "Pat Gelsinger", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Ford", "label": "Ford", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Gm", "label": "Gm", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Jojo Burgess", "label": "Jojo Burgess", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Sherrod Brown", "label": "Sherrod Brown", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Ohio", "label": "Ohio", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Joshua Davis", "label": "Joshua Davis", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Virginia", "label": "Virginia", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "American Rescue Plan", "label": "American Rescue Plan", "shape": "dot", "size": 10, "type": "Legislation"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "American People", "label": "American People", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Medicare", "label": "Medicare", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Va", "label": "Va", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Centers For Disease Control And Prevention", "label": "Centers For Disease Control And Prevention", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Pfizer", "label": "Pfizer", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Test To Treat Initiative", "label": "Test To Treat Initiative", "shape": "dot", "size": 10, "type": "Initiative"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Justice Stephen Breyer", "label": "Justice Stephen Breyer", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "United States Supreme Court", "label": "United States Supreme Court", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Circuit Court Of Appeals Judge Ketanji Brown Jackson", "label": "Circuit Court Of Appeals Judge Ketanji Brown Jackson", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Mexico", "label": "Mexico", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Guatemala", "label": "Guatemala", "shape": "dot", "size": 10, "type": "Country"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Dreamers", "label": "Dreamers", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "U.S. Chamber Of Commerce", "label": "U.S. Chamber Of Commerce", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Frances Haugen", "label": "Frances Haugen", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "American Rescue Plan Funding", "label": "American Rescue Plan Funding", "shape": "dot", "size": 10, "type": "Legislation"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Paycheck Fairness Act", "label": "Paycheck Fairness Act", "shape": "dot", "size": 10, "type": "Legislation"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Child Tax Credit", "label": "Child Tax Credit", "shape": "dot", "size": 10, "type": "Legislation"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Pell Grants", "label": "Pell Grants", "shape": "dot", "size": 10, "type": "Legislation"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Hbcus", "label": "Hbcus", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Pro Act", "label": "Pro Act", "shape": "dot", "size": 10, "type": "Legislation"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "New York City Police Department", "label": "New York City Police Department", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Officer Wilbert Mora", "label": "Officer Wilbert Mora", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Officer Jason Rivera", "label": "Officer Jason Rivera", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Justice Department", "label": "Justice Department", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "American Rescue Plan Funding For Police", "label": "American Rescue Plan Funding For Police", "shape": "dot", "size": 10, "type": "Legislation"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Freedom To Vote Act", "label": "Freedom To Vote Act", "shape": "dot", "size": 10, "type": "Legislation"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "John Lewis Voting Rights Act", "label": "John Lewis Voting Rights Act", "shape": "dot", "size": 10, "type": "Legislation"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Disclose Act", "label": "Disclose Act", "shape": "dot", "size": 10, "type": "Legislation"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Army", "label": "Army", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Danielle Robinson", "label": "Danielle Robinson", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Sergeant First Class Heath Robinson", "label": "Sergeant First Class Heath Robinson", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Cancer Moonshot", "label": "Cancer Moonshot", "shape": "dot", "size": 10, "type": "Initiative"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "President Obama", "label": "President Obama", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Arpa-H", "label": "Arpa-H", "shape": "dot", "size": 10, "type": "Initiative"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Darpa", "label": "Darpa", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Jill Biden", "label": "Jill Biden", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Kamala Harris", "label": "Kamala Harris", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Madam Speaker", "label": "Madam Speaker", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Madam Vice President", "label": "Madam Vice President", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "First Lady", "label": "First Lady", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Second Gentleman", "label": "Second Gentleman", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Members Of Congress", "label": "Members Of Congress", "shape": "dot", "size": 10, "type": "Organizationrole"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Cabinet", "label": "Cabinet", "shape": "dot", "size": 10, "type": "Organizationrole"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Justices Of The Supreme Court", "label": "Justices Of The Supreme Court", "shape": "dot", "size": 10, "type": "Organizationrole"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Constitution", "label": "Constitution", "shape": "dot", "size": 10, "type": "Issue"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Ukrainian People", "label": "Ukrainian People", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "European Parliament", "label": "European Parliament", "shape": "dot", "size": 10, "type": "Organization"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Xi Jinping", "label": "Xi Jinping", "shape": "dot", "size": 10, "type": "Person"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Roe V. Wade", "label": "Roe V. Wade", "shape": "dot", "size": 10, "type": "Legislation"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Equality Act", "label": "Equality Act", "shape": "dot", "size": 10, "type": "Legislation"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Violence Against Women Act", "label": "Violence Against Women Act", "shape": "dot", "size": 10, "type": "Legislation"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Opioid Epidemic", "label": "Opioid Epidemic", "shape": "dot", "size": 10, "type": "Issue"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Covid-19", "label": "Covid-19", "shape": "dot", "size": 10, "type": "Issue"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Gun Trafficking", "label": "Gun Trafficking", "shape": "dot", "size": 10, "type": "Issue"}]);
+                  edges = new vis.DataSet([{"from": "Vladimir Putin", "label": "MEMBER_OF", "to": "Russia", "width": 1}, {"from": "Vladimir Putin", "label": "OPPOSES", "to": "Ukraine", "width": 1}, {"from": "President Zelenskyy", "label": "MEMBER_OF", "to": "Ukraine", "width": 1}, {"from": "Ukrainian Ambassador To The United States", "label": "MEMBER_OF", "to": "United States Of America", "width": 1}, {"from": "United States Of America", "label": "MEMBER_OF", "to": "Nato Alliance", "width": 1}, {"from": "United States Of America", "label": "IMPOSES_SANCTIONS_ON", "to": "American Air Space", "width": 1}, {"from": "United States Of America", "label": "IMPOSES_SANCTIONS_ON", "to": "Ruble", "width": 1}, {"from": "United States Of America", "label": "IMPOSES_SANCTIONS_ON", "to": "Russian Stock Market", "width": 1}, {"from": "United States Of America", "label": "SUPPORTS", "to": "Ukrainians", "width": 1}, {"from": "United States Of America", "label": "SUPPORTS", "to": "Nato Allies", "width": 1}, {"from": "United States Of America", "label": "SUPPORTS", "to": "Poland", "width": 1}, {"from": "United States Of America", "label": "SUPPORTS", "to": "Romania", "width": 1}, {"from": "United States Of America", "label": "SUPPORTS", "to": "Latvia", "width": 1}, {"from": "United States Of America", "label": "SUPPORTS", "to": "Lithuania", "width": 1}, {"from": "United States Of America", "label": "SUPPORTS", "to": "Estonia", "width": 1}, {"from": "United States Of America", "label": "HAS_ROLE", "to": "American Ground Forces", "width": 1}, {"from": "United States Of America", "label": "HAS_ROLE", "to": "American Air Squadrons", "width": 1}, {"from": "United States Of America", "label": "HAS_ROLE", "to": "Ship Deployments", "width": 1}, {"from": "France", "label": "MEMBER_OF", "to": "European Union", "width": 1}, {"from": "Germany", "label": "MEMBER_OF", "to": "European Union", "width": 1}, {"from": "Italy", "label": "MEMBER_OF", "to": "European Union", "width": 1}, {"from": "United Kingdom", "label": "MEMBER_OF", "to": "European Union", "width": 1}, {"from": "Canada", "label": "MEMBER_OF", "to": "European Union", "width": 1}, {"from": "Japan", "label": "MEMBER_OF", "to": "European Union", "width": 1}, {"from": "Korea", "label": "MEMBER_OF", "to": "European Union", "width": 1}, {"from": "Australia", "label": "MEMBER_OF", "to": "European Union", "width": 1}, {"from": "New Zealand", "label": "MEMBER_OF", "to": "European Union", "width": 1}, {"from": "Switzerland", "label": "MEMBER_OF", "to": "European Union", "width": 1}, {"from": "U.S. Department Of Justice", "label": "OPPOSES", "to": "Russian Oligarchs", "width": 1}, {"from": "Intel", "label": "HAS_ROLE", "to": "Pat Gelsinger", "width": 1}, {"from": "Ford", "label": "MEMBER_OF", "to": "United States Of America", "width": 1}, {"from": "Gm", "label": "MEMBER_OF", "to": "United States Of America", "width": 1}, {"from": "Jojo Burgess", "label": "MEMBER_OF", "to": "United States Of America", "width": 1}, {"from": "Sherrod Brown", "label": "MEMBER_OF", "to": "Ohio", "width": 1}, {"from": "Joshua Davis", "label": "MEMBER_OF", "to": "Virginia", "width": 1}, {"from": "American Rescue Plan", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Medicare", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Va", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Centers For Disease Control And Prevention", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Pfizer", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Test To Treat Initiative", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Justice Stephen Breyer", "label": "HAS_ROLE", "to": "United States Supreme Court", "width": 1}, {"from": "Circuit Court Of Appeals Judge Ketanji Brown Jackson", "label": "HAS_ROLE", "to": "United States Supreme Court", "width": 1}, {"from": "Mexico", "label": "MEMBER_OF", "to": "United States Of America", "width": 1}, {"from": "Guatemala", "label": "MEMBER_OF", "to": "United States Of America", "width": 1}, {"from": "Dreamers", "label": "MEMBER_OF", "to": "United States Of America", "width": 1}, {"from": "U.S. Chamber Of Commerce", "label": "MEMBER_OF", "to": "United States Of America", "width": 1}, {"from": "Frances Haugen", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "American Rescue Plan Funding", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Paycheck Fairness Act", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Child Tax Credit", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Pell Grants", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Hbcus", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Pro Act", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "New York City Police Department", "label": "HAS_ROLE", "to": "Officer Wilbert Mora", "width": 1}, {"from": "New York City Police Department", "label": "HAS_ROLE", "to": "Officer Jason Rivera", "width": 1}, {"from": "Justice Department", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "American Rescue Plan Funding For Police", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Freedom To Vote Act", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "John Lewis Voting Rights Act", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Disclose Act", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Army", "label": "MEMBER_OF", "to": "Justice Stephen Breyer", "width": 1}, {"from": "Danielle Robinson", "label": "MEMBER_OF", "to": "Sergeant First Class Heath Robinson", "width": 1}, {"from": "Cancer Moonshot", "label": "RELATED_TO", "to": "President Obama", "width": 1}, {"from": "Arpa-H", "label": "RELATED_TO", "to": "Darpa", "width": 1}, {"from": "Jill Biden", "label": "SUPPORTS", "to": "American People", "width": 1}, {"from": "Kamala Harris", "label": "SUPPORTS", "to": "American People", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "physics"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+                    network.on("selectNode", neighbourhoodHighlight);
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
