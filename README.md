@@ -1,29 +1,33 @@
-🚀 LLM-Driven Knowledge Graph Pipeline
-Ontology Engineering • Knowledge Extraction • Entity Resolution
+# 🚀 LLM-Driven Knowledge Graph Pipeline
 
-An end-to-end experimental pipeline for building high-quality Knowledge Graphs (KGs) using small/efficient LLMs with dynamic memory handling, ontology discovery, and Neo4j-based entity resolution.
+### Ontology Engineering • Knowledge Extraction • Entity Resolution
 
-📌 Motivation
+An end-to-end experimental pipeline for constructing high-quality Knowledge Graphs (KGs) using lightweight and efficient LLMs with dynamic memory handling, ontology discovery, and Neo4j-based entity resolution.
 
-Building Knowledge Graphs from large corpora using LLMs faces three major challenges:
+---
 
-❗ Context window limitations
+# 📌 Motivation
 
-❗ Duplicate entity creation
+Building Knowledge Graphs from large corpora using LLMs introduces several critical challenges:
 
-❗ Weak ontology consistency
+* ❗ Context window limitations
+* ❗ Duplicate entity creation
+* ❗ Weak ontology consistency
+* ❗ Lack of dynamic memory across chunks
 
-❗ Lack of dynamic memory across chunks
+This project explores a modular, research-oriented pipeline designed to address these issues through:
 
-This project explores a modular, research-oriented pipeline that addresses these issues through:
+* ✅ Ontology Engineering with LLMs
+* ✅ Structured Knowledge Extraction
+* ✅ Vector-based Entity Resolution
+* ✅ Neo4j Graph Storage
+* ✅ Dynamic Memory Strategies
 
-✅ Ontology Engineering with LLMs
-✅ Structured Knowledge Extraction
-✅ Vector-based Entity Resolution
-✅ Neo4j Graph Storage
-✅ Dynamic memory strategies
+---
 
-🧠 High-Level Pipeline
+# 🧠 High-Level Pipeline
+
+```mermaid
 flowchart LR
     A[Raw Corpus / PDF] --> B[Chunking]
     B --> C[Ontology Discovery]
@@ -32,309 +36,319 @@ flowchart LR
     E --> F[Entity Resolution]
     F --> G[Neo4j Graph]
     G --> H[Post-processing & Analysis]
+```
 
-🏗️ Project Architecture
+---
+
+# 🏗️ Project Architecture
+
+```bash
 .
 ├── ontology_extractor.py        # Ontology discovery & refinement
 ├── kg_llm_extractor.py          # LLM-based knowledge extraction
 ├── neo4j_entity_resolution.py   # Vector-based entity deduplication
 ├── .env                         # Neo4j credentials
 └── README.md
+```
 
-🔬 Core Components
-1️⃣ Ontology Engineering
+---
 
-File: ontology_extractor.py
+# 🔬 Core Components
 
-🎯 Goal
+## 1️⃣ Ontology Engineering
 
-Automatically discover and refine the schema before KG construction.
+**File:** `ontology_extractor.py`
 
-🧩 Approach
+### 🎯 Goal
 
-Phase 1 — Ontology Discovery
+Automatically discover and refine the schema before Knowledge Graph construction.
+
+### 🧩 Approach
+
+#### Phase 1 — Ontology Discovery
 
 The LLM analyzes corpus chunks to identify:
 
-Candidate entity types
+* Candidate entity types
+* Relationship types
+* Attribute patterns
+* Domain concepts
 
-Relationship types
-
-Attribute patterns
-
-Domain concepts
-
-Phase 2 — Ontology Refinement
+#### Phase 2 — Ontology Refinement
 
 The discovered ontology is:
 
-Deduplicated
+* Deduplicated
+* Normalized
+* Structured into a consistent schema
+* Validated for conflicts
 
-Normalized
-
-Structured into a consistent schema
-
-Validated for conflicts
-
-✅ Why This Matters
+### ✅ Why This Matters
 
 Without ontology grounding:
 
-KG becomes noisy
+* KG becomes noisy
+* Relations become inconsistent
+* Downstream reasoning fails
 
-Relations become inconsistent
+This stage provides schema stability before extraction.
 
-Downstream reasoning fails
+---
 
-This step provides schema stability before extraction.
+## 2️⃣ Knowledge Extraction
 
-2️⃣ Knowledge Extraction
+**File:** `kg_llm_extractor.py`
 
-File: kg_llm_extractor.py
+### 🎯 Goal
 
-🎯 Goal
+Transform unstructured text into structured triples.
 
-Convert unstructured text into structured triples.
-
-⚙️ Extraction Strategy
+### ⚙️ Extraction Strategy
 
 For each chunk:
 
-Pass chunk to small LLM
+1. Pass chunk to a small LLM
+2. Extract structured triples
+3. Attach metadata (`chunk_id`, confidence, etc.)
+4. Store intermediate results
 
-Extract structured triples
+### 🧱 Output Format
 
-Attach metadata (chunk_id, confidence, etc.)
-
-Store intermediate results
-
-🧱 Output Format
+```json
 {
   "entities": [...],
   "relationships": [...],
   "source_chunk": "...",
   "confidence": 0.xx
 }
+```
 
-🔑 Key Design Decisions
-✅ Chunk-aware extraction
+### 🔑 Key Design Decisions
+
+#### ✅ Chunk-aware extraction
 
 Each triple retains provenance.
 
-✅ Schema-guided prompting
+#### ✅ Schema-guided prompting
 
-Extraction is constrained by discovered ontology.
+Extraction is constrained by the discovered ontology.
 
-✅ Small-model friendly
+#### ✅ Small-model friendly
 
-Designed to run with lightweight models (e.g., Mistral-7B).
+Designed to run efficiently with lightweight models such as Mistral-7B.
 
-3️⃣ Entity Resolution (Deduplication)
+---
 
-File: neo4j_entity_resolution.py
+## 3️⃣ Entity Resolution (Deduplication)
 
-This is one of the most critical innovations in the pipeline.
+**File:** `neo4j_entity_resolution.py`
 
-🚨 Problem
+This is one of the most critical components of the pipeline.
+
+### 🚨 Problem
 
 When processing chunks independently:
 
-Same entity appears multiple times
+* The same entity appears multiple times
+* The graph becomes fragmented
+* Query quality degrades
 
-Graph becomes fragmented
+### 💡 Solution
 
-Query quality degrades
+The pipeline implements vector-based entity resolution using:
 
-💡 Solution
+* Sentence embeddings
+* Similarity search
+* Neo4j vector index
+* Threshold-based merging
 
-We implement vector-based entity resolution using:
+### 🔄 Resolution Flow
 
-Sentence embeddings
-
-Similarity search
-
-Neo4j vector index
-
-Threshold-based merging
-
-🔄 Resolution Flow
+```mermaid
 flowchart TD
     A[New Entity] --> B[Generate Embedding]
     B --> C[Search Similar Entities]
     C --> D{Similarity > Threshold?}
     D -->|Yes| E[Merge Entities]
     D -->|No| F[Create New Node]
+```
 
-🧠 Matching Strategy
+### 🧠 Matching Strategy
 
-We compare using:
+Comparison is performed using:
 
-Name similarity
-
-Semantic embedding similarity
-
-Optional attribute matching
+* Name similarity
+* Semantic embedding similarity
+* Optional attribute matching
 
 This significantly reduces duplicate nodes.
 
-🧩 Dynamic Memory Strategy
+---
 
-One major discussion during development was:
+# 🧩 Dynamic Memory Strategy
 
-❓ How do we prevent the LLM from "forgetting" previous chunks?
+One major challenge during development was:
 
-❌ Naive Approach
+> ❓ How do we prevent the LLM from "forgetting" previous chunks?
 
-Process chunks independently → leads to:
+## ❌ Naive Approach
 
-duplicate entities
+Processing chunks independently leads to:
 
-inconsistent relations
+* Duplicate entities
+* Inconsistent relations
+* Ontology drift
 
-ontology drift
+## ✅ Hybrid Solution
 
-✅ Our Hybrid Solution
+The pipeline combines:
 
-We combine:
+### 🔹 Pre-Extraction Memory
 
-🔹 Pre-Extraction Memory
+* Ontology grounding
+* Schema constraints
 
-Ontology grounding
+### 🔹 Post-Extraction Memory
 
-Schema constraints
+* Entity resolution
+* Graph merging
+* Community clustering
 
-🔹 Post-Extraction Memory
+## 🚀 Why This Works Better
 
-Entity resolution
+Instead of forcing the LLM to remember everything — which is expensive and unreliable — the pipeline:
 
-Graph merging
+* ✔ Lets the model work locally
+* ✔ Fixes globally through graph algorithms
+* ✔ Maintains scalability
 
-Community clustering
+---
 
-🚀 Why This Works Better
-
-Instead of forcing the LLM to remember everything (which is expensive and unreliable), we:
-
-✔ Let the model work locally
-✔ Fix globally via graph algorithms
-✔ Maintain scalability
-
-🗄️ Neo4j Integration
+# 🗄️ Neo4j Integration
 
 The graph layer provides:
 
-Persistent memory
+* Persistent memory
+* Efficient traversal
+* Vector similarity search
+* Graph analytics
 
-Efficient traversal
+---
 
-Vector similarity search
+# 🔧 Required Environment Variables
 
-Graph analytics
+Create a `.env` file:
 
-🔧 Required Environment Variables
-
-Create a .env file:
-
+```env
 NEO4J_URI=bolt://localhost:7687
 NEO4J_USERNAME=neo4j
 NEO4J_PASSWORD=your_password
+```
 
-▶️ How to Run
-1️⃣ Install Dependencies
+---
+
+# ▶️ How to Run
+
+## 1️⃣ Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-2️⃣ Start Neo4j
+## 2️⃣ Start Neo4j
 
-Make sure Neo4j is running locally.
+Ensure Neo4j is running locally.
 
-3️⃣ Run Ontology Discovery
+## 3️⃣ Run Ontology Discovery
+
+```bash
 python ontology_extractor.py
+```
 
-4️⃣ Run Knowledge Extraction
+## 4️⃣ Run Knowledge Extraction
+
+```bash
 python kg_llm_extractor.py
+```
 
-5️⃣ Run Entity Resolution
+## 5️⃣ Run Entity Resolution
+
+```bash
 python neo4j_entity_resolution.py
+```
 
-📊 Design Philosophy
+---
 
-This project follows several important principles:
+# 📊 Design Philosophy
 
-🧠 LLMs are not memory systems
+This project follows several key principles.
 
-We avoid overloading context windows and instead use:
+## 🧠 LLMs are not memory systems
 
-Graph memory
+Instead of overloading context windows, the pipeline relies on:
 
-Vector search
+* Graph memory
+* Vector search
+* Post-processing
 
-Post-processing
-
-⚡ Small models > giant models (for pipelines)
+## ⚡ Small models > giant models (for pipelines)
 
 The system is optimized for:
 
-Mistral-7B class models
+* Mistral-7B class models
+* Kaggle and consumer GPUs
+* Efficient inference
 
-Kaggle/consumer GPUs
+## 🔄 Graph post-processing is essential
 
-Efficient inference
+High-quality Knowledge Graphs require:
 
-🔄 Graph post-processing is essential
-
-High-quality KGs require:
-
-deduplication
-
-clustering
-
-schema enforcement
+* Deduplication
+* Clustering
+* Schema enforcement
 
 —not just extraction.
 
-🧪 Future Work
+---
 
- Online ontology adaptation
+# 🧪 Future Work
 
- Streaming KG construction
+* Online ontology adaptation
+* Streaming KG construction
+* Community detection integration
+* Temporal knowledge graphs
+* Multi-agent extraction
+* GraphRAG integration
 
- Community detection integration
+---
 
- Temporal knowledge graphs
+# 🤝 Contributions
 
- Multi-agent extraction
-
- GraphRAG integration
-
-🤝 Contributions
-
-Contributions, ideas, and research discussions are welcome!
+Contributions, ideas, and research discussions are welcome.
 
 If you are working on:
 
-KG construction
+* KG construction
+* GraphRAG
+* Ontology learning
+* LLM pipelines
 
-GraphRAG
+feel free to open an issue or submit a PR.
 
-Ontology learning
+---
 
-LLM pipelines
-
-feel free to open an issue or PR.
-
-⭐ Acknowledgment
+# ⭐ Acknowledgment
 
 This project is an experimental research effort exploring the intersection of:
 
-Knowledge Graphs
+* Knowledge Graphs
+* Small Language Models
+* Graph Databases
+* Representation Learning
 
-Small Language Models
+---
 
-Graph Databases
-
-Representation Learning
-
-💬 Author Note
+# 💬 Author Note
 
 Building robust Knowledge Graphs with LLMs is not just an extraction problem —
 it is a systems engineering problem involving memory, ontology, and graph intelligence.
