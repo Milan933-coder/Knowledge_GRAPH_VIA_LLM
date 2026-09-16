@@ -352,3 +352,23 @@ This project is an experimental research effort exploring the intersection of:
 
 Building robust Knowledge Graphs with LLMs is not just an extraction problem —
 it is a systems engineering problem involving memory, ontology, and graph intelligence.
+
+## Presentation-ready demo
+
+The repository now includes a single end-to-end runner:
+
+```bash
+python -m pip install -r requirements.txt
+python run_pipeline.py --input raw_data.txt --max-chunks 4
+```
+
+It writes `ontology.json`, `triples.json`, `graph.json`, `graph.graphml`, and an
+interactive `graph_visualization.html` into `outputs/`.
+
+Copy `.env.example` to `.env` and configure either an AICredits key or Ollama.
+`LLM_PROVIDER=auto` uses AICredits when `AICREDITS_API_KEY` is present and uses
+Ollama otherwise. To run fully locally, set `LLM_PROVIDER=ollama` and pull the
+configured Ollama model.
+
+Neo4j is optional for the demo. Add `--neo4j` after configuring the Neo4j
+variables to load the generated nodes and relationships.

@@ -5,12 +5,16 @@ Extracts ontology from text corpus and refines it by removing duplicates
 
 import json
 import re
+import os
+from pathlib import Path
 from typing import List, Dict, Set, Tuple
 from collections import defaultdict
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import requests
+
+from llm_client import LLMClient, extract_json
 
 
 class LocalLLMOntologyExtractor:
@@ -27,28 +31,22 @@ class LocalLLMOntologyExtractor:
         self.model_name = model_name
         self.ollama_url = ollama_url
         self.api_endpoint = f"{ollama_url}/api/generate"
+        self.llm_client = LLMClient.from_env()
         
     def call_llm(self, prompt: str, temperature: float = 0.3) -> str:
         """Call local LLM via Ollama API"""
         try:
-            response = requests.post(
-                self.api_endpoint,
-                json={
-                    "model": self.model_name,
-                    "prompt": prompt,
-                    "temperature": temperature,
-                    "stream": False
-                },
-                timeout=60
+            return self.llm_client.chat(
+                [
+                    {"role": "system", "content": "You are an ontology engineer. Return valid JSON only."},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=temperature,
+                max_tokens=1200,
+                json_mode=True,
             )
-            
-            if response.status_code == 200:
-                return response.json().get("response", "")
-            else:
-                print(f"Error calling LLM: {response.status_code}")
-                return ""
         except Exception as e:
-            print(f"Error calling LLM: {str(e)}")
+            print(f"Error calling LLM ({self.llm_client.provider}): {str(e)}")
             return ""
     
     def extract_ontology_from_text(self, text: str) -> Dict:
@@ -83,10 +81,11 @@ JSON Output:"""
         
         # Parse JSON from response
         try:
-            # Try to find JSON in the response
-            json_match = re.search(r'\{[\s\S]*\}', response)
-            if json_match:
-                ontology = json.loads(json_match.group())
+            try:
+                ontology = extract_json(response)
+            except ValueError:
+                ontology = None
+            if isinstance(ontology, dict):
                 return ontology
             else:
                 print("No JSON found in response")
@@ -453,7 +452,9 @@ def main():
     
     # Step 1: Extract ontology using local LLM
     print("\n### STEP 1: ONTOLOGY EXTRACTION ###\n")
-    extractor = LocalLLMOntologyExtractor(model_name="llama2")
+    extractor = LocalLLMOntologyExtractor(
+        model_name=os.getenv("OLLAMA_MODEL", "qwen2.5:1.5b")
+    )
     
     print("Extracting ontology from corpus...")
     raw_ontology = extractor.extract_from_corpus(sample_corpus)
@@ -472,12 +473,15 @@ def main():
     print("\n### STEP 3: EXPORT ###\n")
     exporter = OntologyExporter()
     
+    output_dir = Path(os.getenv("KG_OUTPUT_DIR", "outputs"))
+    output_dir.mkdir(parents=True, exist_ok=True)
+
     # Export raw ontology
-    exporter.to_json(raw_ontology, "/home/claude/ontology_raw.json")
+    exporter.to_json(raw_ontology, output_dir / "ontology_raw.json")
     
     # Export refined ontology
-    exporter.to_json(refined_ontology, "/home/claude/ontology_refined.json")
-    exporter.to_rdf(refined_ontology, "/home/claude/ontology_refined.ttl")
+    exporter.to_json(refined_ontology, output_dir / "ontology_refined.json")
+    exporter.to_rdf(refined_ontology, output_dir / "ontology_refined.ttl")
     
     # Print summaries
     print("\n" + "="*60)

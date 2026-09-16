@@ -211,6 +211,32 @@ class Neo4jEntityResolver:
         
         print(f"✓ Found {len(candidates)} fuzzy match candidates")
         return candidates
+
+    def find_duplicate_candidates(
+        self, similarity_threshold: float = 0.85, neighbors: int = 50
+    ) -> List[Dict]:
+        """Find nearest-neighbour duplicate candidates through the vector index."""
+        candidates = []
+        with self.driver.session() as session:
+            result = session.run("""
+                MATCH (e1:Entity)
+                WHERE e1.embedding IS NOT NULL
+                  AND (e1.resolved = false OR e1.resolved IS NULL)
+                CALL db.index.vector.queryNodes(
+                    'entity_embeddings', $neighbors, e1.embedding
+                ) YIELD node AS e2, score AS similarity
+                WHERE e1.id < e2.id
+                  AND (e2.resolved = false OR e2.resolved IS NULL)
+                  AND similarity >= $threshold
+                RETURN e1.id AS entity1_id,
+                       e1.name AS entity1_name,
+                       e2.id AS entity2_id,
+                       e2.name AS entity2_name,
+                       similarity
+                ORDER BY similarity DESC
+            """, neighbors=neighbors, threshold=similarity_threshold)
+            candidates = [dict(record) for record in result]
+        return candidates
     
     def merge_duplicate_entities(self, entity1_id: str, entity2_id: str,
                                  keep_id: str = None):
@@ -239,7 +265,8 @@ class Neo4jEntityResolver:
                 YIELD node
                 
                 // Mark as resolved
-                SET node.resolved = true,
+                SET node.id = $keep_id,
+                    node.resolved = true,
                     node.merged_from = coalesce(node.merged_from, []) + [$remove_id]
                 
                 RETURN node.id AS merged_id
@@ -287,24 +314,26 @@ class Neo4jEntityResolver:
         
         with self.driver.session() as session:
             result = session.run("""
-                MATCH (e1:Entity), (e2:Entity)
-                WHERE e1.id < e2.id
+                MATCH (e1:Entity)
+                WHERE e1.embedding IS NOT NULL
                   AND (e1.resolved = false OR e1.resolved IS NULL)
+                CALL db.index.vector.queryNodes(
+                    'entity_embeddings', $neighbors, e1.embedding
+                ) YIELD node AS e2, score AS similarity
+                WHERE e1.id < e2.id
                   AND (e2.resolved = false OR e2.resolved IS NULL)
-                WITH e1, e2,
-                     gds.similarity.cosine(e1.embedding, e2.embedding) AS similarity
-                WHERE similarity >= $threshold
+                  AND similarity >= $threshold
                 MERGE (e1)-[r:SIMILAR_TO]->(e2)
                 SET r.similarity = similarity
                 RETURN count(r) AS edges_created
-            """, {'threshold': similarity_threshold})
+            """, {'threshold': similarity_threshold, 'neighbors': 50})
             
             record = result.single()
             print(f"✓ Created {record['edges_created']} similarity edges")
     
-    def find_duplicate_clusters(self) -> List[Set[str]]:
+    def find_duplicate_clusters_gds(self) -> List[Set[str]]:
         """
-        Find clusters of duplicate entities using graph algorithms
+        Find clusters with Neo4j GDS when a compatible projected graph exists.
         Uses connected components on SIMILAR_TO relationships
         
         Returns:

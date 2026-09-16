@@ -8,6 +8,7 @@ import json
 from typing import List, Dict, Optional
 import os
 from kg_extractor import StatefulKGExtractor, Triple
+from llm_client import LLMClient, extract_json
 
 try:
     import torch
@@ -33,7 +34,9 @@ class LLMStatefulKGExtractor(StatefulKGExtractor):
         self.max_context_tokens = int(os.getenv("LLM_MAX_CONTEXT_TOKENS", "4096"))
         self.model = None
         self.tokenizer = None
-        self.client = self._load_local_model_8bit()
+        self.api_client = LLMClient.from_env()
+        self.using_api_client = self.api_client.is_ready()
+        self.client = self.using_api_client or self._load_local_model_8bit()
         
         # Stateful conversation memory
 
@@ -68,10 +71,21 @@ class LLMStatefulKGExtractor(StatefulKGExtractor):
 
     def _chat_completion(self, prompt: str, max_tokens: int) -> str:
         """
-        Run local Qwen inference using 8-bit model.
+        Run inference through AICredits/Ollama, with an optional local
+        Transformers fallback.
         """
+        if self.using_api_client:
+            return self.api_client.chat(
+                [
+                    {"role": "system", "content": "You are a careful information extraction assistant. Follow JSON output instructions exactly."},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=self.temperature,
+                max_tokens=max_tokens,
+            )
+
         if not self.client:
-            raise RuntimeError("No local Qwen model configured")
+            raise RuntimeError("No LLM configured. Set AICREDITS_API_KEY or start Ollama.")
 
         tokens_to_generate = max(1, min(max_tokens, self.default_max_tokens))
         system_msg = (
@@ -144,7 +158,7 @@ Respond in JSON format:
         try:
             response_text = self._chat_completion(prompt=prompt, max_tokens=1000)
             
-            result = json.loads(response_text)
+            result = extract_json(response_text)
             self.domain_context = result.get("domain", "")
             self.entity_context['key_concepts'] = set(result.get("key_concepts", []))
             
@@ -254,7 +268,11 @@ Extract 5-15 triples. Focus on quality over quantity."""
                 if response_text.startswith('json'):
                     response_text = response_text[4:]
             
-            triples_data = json.loads(response_text)
+            triples_data = extract_json(response_text)
+            if isinstance(triples_data, dict):
+                triples_data = triples_data.get("triples", [])
+            if not isinstance(triples_data, list):
+                return []
             
             triples = []
             for item in triples_data:
@@ -269,7 +287,7 @@ Extract 5-15 triples. Focus on quality over quantity."""
             
             return triples
             
-        except json.JSONDecodeError as e:
+        except (json.JSONDecodeError, ValueError) as e:
             print(f"Error parsing LLM response: {e}")
             print(f"Response: {response_text[:200]}...")
             return []
